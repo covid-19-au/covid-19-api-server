@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package org.covid19.api;
+
+option java_multiple_files = true;
+option java_outer_classname = "CommonProto";
+
+// Pagination handles multiple-page results
+message Pagination {
+    uint32 total_results = 1;
+    uint32 total_pages = 2;
+    uint32 current_page = 3;
+    uint32 num_per_page = 4;
+}

@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package org.covid19.api;
+
+option java_multiple_files = true;
+option java_outer_classname = "DataAdminProto";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+import "cases.def.proto";
+import "flights.def.proto";
+
+// DataAdmin defines admin services (mostly write)
+service DataAdmin {
+    rpc IsServiceReady (google.protobuf.Empty) returns (google.protobuf.BoolValue); // Health check
+
+    rpc AddCases (AddCasesRequest) returns (google.protobuf.BoolValue); // Add cases
+    rpc PutCases (PutCasesRequest) returns (google.protobuf.BoolValue); // Update cases
+    rpc DelCases (DelCasesRequest) returns (google.protobuf.BoolValue); // Delete cases
+
+    rpc AddFlights (AddFlightsRequest) returns (google.protobuf.BoolValue); // Add flights
+    rpc DelFlights (DelFlightsRequest) returns (google.protobuf.BoolValue); // Delete flights
+}

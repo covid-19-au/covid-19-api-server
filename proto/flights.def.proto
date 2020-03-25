@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package org.covid19.api;
+
+option java_multiple_files = true;
+option java_outer_classname = "FlightInterfaceProto";
+
+import "google/protobuf/timestamp.proto";
+
+import "common.proto";
+
+message FlightDetail {
+    string flight_num = 1; // Flight number
+    string iata_code = 2; // IATA code of airline
+    string icao_code = 3; // ICAO code of airline
+    google.protobuf.Timestamp dep_date = 4; // Departure date
+    google.protobuf.Timestamp arr_date = 5; // Arrival date
+
+    string dep_airport = 11; // Departure airport code
+    string arr_airport = 12; // Arrival airport code
+
+    repeated uint32 affected_rows = 21; // Affected seating rows
+}
+
+// GetFlightsRequest describes request payload for querying affected flights match specific criteria
+message GetFlightsRequest {
+    string flight_num = 1;
+
+    uint32 dep_date = 4;
+    string dep_airport = 11;
+}
+
+// GetFlightsResponse describes response payload for matched flights
+message GetFlightsResponse {
+    Pagination pagination = 1;
+
+    repeated FlightDetail flights = 11;
+}
+
+// AddFlightsRequest describes request payload for adding affected flights
+message AddFlightsRequest {
+    repeated FlightDetail flights = 1;
+}
+
+// DelFlightsRequest describes request payload for deleting affected flights
+message DelFlightsRequest {
+    message FlightIdentifier {
+        string flight_num = 1; // Flight number
+        uint32 dep_date = 2; // Departure date
+    }
+
+    repeated FlightIdentifier flights = 1;
+}

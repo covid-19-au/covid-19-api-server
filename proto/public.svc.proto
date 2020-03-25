@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package org.covid19.api;
+
+option java_multiple_files = true;
+option java_outer_classname = "PublicQueryProto";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+import "cases.def.proto";
+import "flights.def.proto";
+
+// PublicQuery defines public-facing data service (mostly read only)
+service PublicQuery {
+    rpc IsServiceReady (google.protobuf.Empty) returns (google.protobuf.BoolValue); // Health check
+
+    rpc GetCases (GetCasesRequest) returns (GetCasesResponse); // Get cases
+
+    rpc GetFlights (GetFlightsRequest) returns (GetFlightsResponse); // Get flights
+}
