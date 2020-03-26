@@ -12,10 +12,12 @@ import (
 type PublicServer struct{}
 
 func (s PublicServer) IsServiceReady(context.Context, *empty.Empty) (*wrappers.BoolValue, error) {
-    isReady := database.PingMongo(5 * time.Second)
-    checkResult := wrappers.BoolValue{Value: isReady}
+    isMongoReady := database.PingMongo(10 * time.Second)
+    isRedisReady := database.PingRedis()
 
-    return &checkResult, nil
+    checkResult := isMongoReady && isRedisReady
+
+    return &wrappers.BoolValue{Value: checkResult}, nil
 }
 
 func (s PublicServer) GetCases(context.Context, *pb.GetCasesRequest) (*pb.GetCasesResponse, error) {

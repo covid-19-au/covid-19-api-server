@@ -15,7 +15,7 @@ var mongoClient *mongo.Client
 // InitMongo initialises a new MongoDB client (to be used globally)
 func InitMongo(dbName string, connString string) (*mongo.Client, error) {
     if mongoClient != nil {
-        log.Println("Database was initialised already. Re-using existing client.")
+        log.Println("MongoDB was initialised already. Re-using existing client.")
         return mongoClient, nil
     }
 
