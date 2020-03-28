@@ -5,8 +5,8 @@ package org.covid19.api;
 option java_multiple_files = true;
 option java_outer_classname = "GeoInterfaceProto";
 
-// CityLocation describes location information with text-based names
-message CityLocation {
+// NamedLocation describes location information with text-based names
+message NamedLocation {
     string country = 1; // Country code (in ISO 3166-1 alpha-2 format)
     string region = 2; // Region code (state or province, in ISO 3166-2 format)
     string city = 3; // City name (in full format)
@@ -16,6 +16,6 @@ message CityLocation {
 // GPSLocation describes location information with GPS coordinates
 message GPSLocation {
     double geo_lat = 1; // GPS latitude
-    double geo_lng = 2; // GPS Longitude
+    double geo_lng = 2; // GPS longitude
     uint64 precision_rad = 3; // Radius precision in centimeters
 }

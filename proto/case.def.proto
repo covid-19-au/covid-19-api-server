@@ -37,8 +37,8 @@ message ExistingCaseDetail {
     InfectionSource infect_src = 12; // Source of infection
 
     oneof location {
-        CityLocation location_by_city = 21;
-        GPSLocation location_by_gps = 22;
+        NamedLocation named_location = 21;
+        GPSLocation gps_location = 22;
     }
 }
 
@@ -51,16 +51,16 @@ message NewCaseDetail {
     InfectionSource infect_src = 12; // Source of infection
 
     oneof location {
-        CityLocation location_by_city = 21;
-        GPSLocation location_by_gps = 22;
+        NamedLocation named_location = 21;
+        GPSLocation gps_location = 22;
     }
 }
 
 // GetCasesRequest describes request payload for querying cases match specific criteria
 message GetCasesRequest {
     oneof location {
-        CityLocation location_by_city = 1;
-        GPSLocation location_by_gps = 2;
+        NamedLocation named_location = 1;
+        GPSLocation gps_location = 2;
     }
 
     repeated CaseState states = 11; // Case states

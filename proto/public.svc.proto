@@ -8,8 +8,8 @@ option java_outer_classname = "PublicQueryProto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";
 
-import "cases.def.proto";
-import "flights.def.proto";
+import "case.def.proto";
+import "flight.def.proto";
 
 // PublicQuery defines public-facing data service (mostly read only)
 service PublicQuery {
