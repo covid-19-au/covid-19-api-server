@@ -1,9 +1,10 @@
 syntax = "proto3";
 
-package org.covid19.api;
+package covid19api;
 
 option java_multiple_files = true;
 option java_outer_classname = "CaseInterfaceProto";
+option java_package = "org.covid19.api";
 
 import "google/protobuf/timestamp.proto";
 
@@ -12,19 +13,23 @@ import "geo.def.proto";
 
 // CaseState describes state of the case
 enum CaseState {
-    UNKNOWN = 0;
-    UNDISCLOSED = 1;
+    _UNASSIGNED_CASE_STATE = 0; // unknown value will be replaced with this value
 
-    CONFIRMED = 11;
-    RECOVERED = 12;
-    DEATH = 13;
+    UNKNOWN = 11;
+    UNDISCLOSED = 12;
+
+    CONFIRMED = 21;
+    RECOVERED = 22;
+    DEATH = 23;
 }
 
 // InfectionSource describes source of the infection
 enum InfectionSource {
-    DOMESTIC = 0;
-    INTL_IMPORTED = 1;
-    SHIP_IMPORTED = 2;
+    _UNASSIGNED_INF_SRC = 0; // unknown value will be replaced with this value
+
+    DOMESTIC = 1;
+    INTL_IMPORTED = 2;
+    SHIP_IMPORTED = 3;
 }
 
 // ExistingCaseDetail describes an existing (exists in DB) case

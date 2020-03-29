@@ -1,10 +1,12 @@
 syntax = "proto3";
 
-package org.covid19.api;
+package covid19api;
 
 option java_multiple_files = true;
 option java_outer_classname = "DataAdminProto";
+option java_package = "org.covid19.api";
 
+// import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";
 
@@ -13,12 +15,36 @@ import "flight.def.proto";
 
 // DataAdmin defines admin services (mostly write)
 service DataAdmin {
-    rpc IsServiceReady (google.protobuf.Empty) returns (google.protobuf.BoolValue); // Health check
+    rpc IsServiceReady (google.protobuf.Empty) returns (google.protobuf.BoolValue) { // Health check
+//        option (google.api.http) = {
+//            get: "/v1/admin/_healthz"
+//        };
+    };
 
-    rpc AddCases (AddCasesRequest) returns (google.protobuf.BoolValue); // Add cases
-    rpc PutCases (PutCasesRequest) returns (google.protobuf.BoolValue); // Update cases
-    rpc DelCases (DelCasesRequest) returns (google.protobuf.BoolValue); // Delete cases
+    rpc AddCases (AddCasesRequest) returns (google.protobuf.BoolValue) { // Add cases
+//        option (google.api.http) = {
+//            post: "/v1/public/cases"
+//        };
+    };
+    rpc PutCases (PutCasesRequest) returns (google.protobuf.BoolValue) { // Update cases
+//        option (google.api.http) = {
+//            put: "/v1/public/cases"
+//        };
+    };
+    rpc DelCases (DelCasesRequest) returns (google.protobuf.BoolValue) { // Delete cases
+//        option (google.api.http) = {
+//            delete: "/v1/public/cases"
+//        };
+    };
 
-    rpc AddFlights (AddFlightsRequest) returns (google.protobuf.BoolValue); // Add flights
-    rpc DelFlights (DelFlightsRequest) returns (google.protobuf.BoolValue); // Delete flights
+    rpc AddFlights (AddFlightsRequest) returns (google.protobuf.BoolValue) { // Add flights
+//        option (google.api.http) = {
+//            post: "/v1/public/flights"
+//        };
+    };
+    rpc DelFlights (DelFlightsRequest) returns (google.protobuf.BoolValue) { // Delete flights
+//        option (google.api.http) = {
+//            delete: "/v1/public/flights"
+//        };
+    };
 }

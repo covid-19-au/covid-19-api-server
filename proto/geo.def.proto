@@ -1,9 +1,10 @@
 syntax = "proto3";
 
-package org.covid19.api;
+package covid19api;
 
 option java_multiple_files = true;
 option java_outer_classname = "GeoInterfaceProto";
+option java_package = "org.covid19.api";
 
 // NamedLocation describes location information with text-based names
 message NamedLocation {
