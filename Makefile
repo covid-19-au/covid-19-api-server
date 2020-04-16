@@ -4,7 +4,7 @@ all: lib-go lib-js
 
 lib-go: clean-proto dep dep-build mkdir-build
 	protoc -I proto \
-		-I third_party/grpc-gateway/third_party/googleapis \
+		-I third_party \
 		--proto_path=$(GOPATH)/src \
 		--proto_path=$(GOPATH)/src/github.com/golang/protobuf \
 		--proto_path=proto/ \
@@ -14,18 +14,24 @@ lib-go: clean-proto dep dep-build mkdir-build
 
 lib-js: clean-proto dep dep-build mkdir-build
 	protoc -I proto \
+		-I third_party \
+		--proto_path=$(GOPATH)/src \
 		--proto_path=proto/ \
 		--js_out=import_style=commonjs+dts,binary:protogen/cjs \
 		--grpc-web_out=import_style=commonjs+dts,mode=grpcwebtext:protogen/cjs \
 		proto/*.proto
 
 	protoc -I proto \
+		-I third_party \
+		--proto_path=$(GOPATH)/src \
 		--proto_path=proto/ \
 		--js_out=import_style=closure:protogen/closure \
 		--grpc-web_out=import_style=closure,mode=grpcwebtext:protogen/closure \
 		proto/*.proto
 
 	protoc -I proto \
+		-I third_party \
+		--proto_path=$(GOPATH)/src \
 		--proto_path=proto/ \
 		--js_out=import_style=typescript:protogen/ts \
 		--grpc-web_out=import_style=typescript,mode=grpcwebtext:protogen/ts \
