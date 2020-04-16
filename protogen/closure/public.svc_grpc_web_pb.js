@@ -16,6 +16,8 @@ goog.require('grpc.web.ClientReadableStream');
 goog.require('grpc.web.Error');
 goog.require('grpc.web.MethodDescriptor');
 goog.require('grpc.web.MethodType');
+goog.require('proto.covid19api.GetCaseStatsRequest');
+goog.require('proto.covid19api.GetCaseStatsResponse');
 goog.require('proto.covid19api.GetCasesRequest');
 goog.require('proto.covid19api.GetCasesResponse');
 goog.require('proto.covid19api.GetFlightsRequest');
@@ -236,6 +238,86 @@ proto.covid19api.PublicQueryPromiseClient.prototype.getCases =
       request,
       metadata || {},
       methodDescriptor_PublicQuery_GetCases);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.covid19api.GetCaseStatsRequest,
+ *   !proto.covid19api.GetCaseStatsResponse>}
+ */
+const methodDescriptor_PublicQuery_GetCaseStats = new grpc.web.MethodDescriptor(
+  '/covid19api.PublicQuery/GetCaseStats',
+  grpc.web.MethodType.UNARY,
+  proto.covid19api.GetCaseStatsRequest,
+  proto.covid19api.GetCaseStatsResponse,
+  /**
+   * @param {!proto.covid19api.GetCaseStatsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.covid19api.GetCaseStatsResponse.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.covid19api.GetCaseStatsRequest,
+ *   !proto.covid19api.GetCaseStatsResponse>}
+ */
+const methodInfo_PublicQuery_GetCaseStats = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.covid19api.GetCaseStatsResponse,
+  /**
+   * @param {!proto.covid19api.GetCaseStatsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.covid19api.GetCaseStatsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.covid19api.GetCaseStatsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.covid19api.GetCaseStatsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.covid19api.GetCaseStatsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.covid19api.PublicQueryClient.prototype.getCaseStats =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/covid19api.PublicQuery/GetCaseStats',
+      request,
+      metadata || {},
+      methodDescriptor_PublicQuery_GetCaseStats,
+      callback);
+};
+
+
+/**
+ * @param {!proto.covid19api.GetCaseStatsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.covid19api.GetCaseStatsResponse>}
+ *     A native promise that resolves to the response
+ */
+proto.covid19api.PublicQueryPromiseClient.prototype.getCaseStats =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/covid19api.PublicQuery/GetCaseStats',
+      request,
+      metadata || {},
+      methodDescriptor_PublicQuery_GetCaseStats);
 };
 
 

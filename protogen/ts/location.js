@@ -8,7 +8,7 @@
  */
 // GENERATED CODE -- DO NOT EDIT!
 
-goog.provide('proto.covid19api.NamedLocation');
+goog.provide('proto.covid19api.Location');
 
 goog.require('jspb.BinaryReader');
 goog.require('jspb.BinaryWriter');
@@ -24,16 +24,16 @@ goog.require('jspb.Message');
  * @extends {jspb.Message}
  * @constructor
  */
-proto.covid19api.NamedLocation = function(opt_data) {
+proto.covid19api.Location = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.covid19api.NamedLocation, jspb.Message);
+goog.inherits(proto.covid19api.Location, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.covid19api.NamedLocation.displayName = 'proto.covid19api.NamedLocation';
+  proto.covid19api.Location.displayName = 'proto.covid19api.Location';
 }
 
 
@@ -51,8 +51,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.covid19api.NamedLocation.prototype.toObject = function(opt_includeInstance) {
-  return proto.covid19api.NamedLocation.toObject(opt_includeInstance, this);
+proto.covid19api.Location.prototype.toObject = function(opt_includeInstance) {
+  return proto.covid19api.Location.toObject(opt_includeInstance, this);
 };
 
 
@@ -61,16 +61,19 @@ proto.covid19api.NamedLocation.prototype.toObject = function(opt_includeInstance
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.covid19api.NamedLocation} msg The msg instance to transform.
+ * @param {!proto.covid19api.Location} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.covid19api.NamedLocation.toObject = function(includeInstance, msg) {
+proto.covid19api.Location.toObject = function(includeInstance, msg) {
   var f, obj = {
     country: jspb.Message.getFieldWithDefault(msg, 1, ""),
     region: jspb.Message.getFieldWithDefault(msg, 2, ""),
     city: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    postalCode: jspb.Message.getFieldWithDefault(msg, 4, "")
+    postalCode: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    geoLat: jspb.Message.getFloatingPointFieldWithDefault(msg, 11, 0.0),
+    geoLng: jspb.Message.getFloatingPointFieldWithDefault(msg, 12, 0.0),
+    geoPrecisionRad: jspb.Message.getFieldWithDefault(msg, 13, 0)
   };
 
   if (includeInstance) {
@@ -84,23 +87,23 @@ proto.covid19api.NamedLocation.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.covid19api.NamedLocation}
+ * @return {!proto.covid19api.Location}
  */
-proto.covid19api.NamedLocation.deserializeBinary = function(bytes) {
+proto.covid19api.Location.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.covid19api.NamedLocation;
-  return proto.covid19api.NamedLocation.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.covid19api.Location;
+  return proto.covid19api.Location.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.covid19api.NamedLocation} msg The message object to deserialize into.
+ * @param {!proto.covid19api.Location} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.covid19api.NamedLocation}
+ * @return {!proto.covid19api.Location}
  */
-proto.covid19api.NamedLocation.deserializeBinaryFromReader = function(msg, reader) {
+proto.covid19api.Location.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -123,6 +126,18 @@ proto.covid19api.NamedLocation.deserializeBinaryFromReader = function(msg, reade
       var value = /** @type {string} */ (reader.readString());
       msg.setPostalCode(value);
       break;
+    case 11:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setGeoLat(value);
+      break;
+    case 12:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setGeoLng(value);
+      break;
+    case 13:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setGeoPrecisionRad(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -136,9 +151,9 @@ proto.covid19api.NamedLocation.deserializeBinaryFromReader = function(msg, reade
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.covid19api.NamedLocation.prototype.serializeBinary = function() {
+proto.covid19api.Location.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.covid19api.NamedLocation.serializeBinaryToWriter(this, writer);
+  proto.covid19api.Location.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -146,11 +161,11 @@ proto.covid19api.NamedLocation.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.covid19api.NamedLocation} message
+ * @param {!proto.covid19api.Location} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.covid19api.NamedLocation.serializeBinaryToWriter = function(message, writer) {
+proto.covid19api.Location.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getCountry();
   if (f.length > 0) {
@@ -180,6 +195,27 @@ proto.covid19api.NamedLocation.serializeBinaryToWriter = function(message, write
       f
     );
   }
+  f = message.getGeoLat();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      11,
+      f
+    );
+  }
+  f = message.getGeoLng();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      12,
+      f
+    );
+  }
+  f = message.getGeoPrecisionRad();
+  if (f !== 0) {
+    writer.writeUint64(
+      13,
+      f
+    );
+  }
 };
 
 
@@ -187,16 +223,16 @@ proto.covid19api.NamedLocation.serializeBinaryToWriter = function(message, write
  * optional string country = 1;
  * @return {string}
  */
-proto.covid19api.NamedLocation.prototype.getCountry = function() {
+proto.covid19api.Location.prototype.getCountry = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.covid19api.NamedLocation} returns this
+ * @return {!proto.covid19api.Location} returns this
  */
-proto.covid19api.NamedLocation.prototype.setCountry = function(value) {
+proto.covid19api.Location.prototype.setCountry = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -205,16 +241,16 @@ proto.covid19api.NamedLocation.prototype.setCountry = function(value) {
  * optional string region = 2;
  * @return {string}
  */
-proto.covid19api.NamedLocation.prototype.getRegion = function() {
+proto.covid19api.Location.prototype.getRegion = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.covid19api.NamedLocation} returns this
+ * @return {!proto.covid19api.Location} returns this
  */
-proto.covid19api.NamedLocation.prototype.setRegion = function(value) {
+proto.covid19api.Location.prototype.setRegion = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -223,16 +259,16 @@ proto.covid19api.NamedLocation.prototype.setRegion = function(value) {
  * optional string city = 3;
  * @return {string}
  */
-proto.covid19api.NamedLocation.prototype.getCity = function() {
+proto.covid19api.Location.prototype.getCity = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.covid19api.NamedLocation} returns this
+ * @return {!proto.covid19api.Location} returns this
  */
-proto.covid19api.NamedLocation.prototype.setCity = function(value) {
+proto.covid19api.Location.prototype.setCity = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
@@ -241,17 +277,71 @@ proto.covid19api.NamedLocation.prototype.setCity = function(value) {
  * optional string postal_code = 4;
  * @return {string}
  */
-proto.covid19api.NamedLocation.prototype.getPostalCode = function() {
+proto.covid19api.Location.prototype.getPostalCode = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.covid19api.NamedLocation} returns this
+ * @return {!proto.covid19api.Location} returns this
  */
-proto.covid19api.NamedLocation.prototype.setPostalCode = function(value) {
+proto.covid19api.Location.prototype.setPostalCode = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional double geo_lat = 11;
+ * @return {number}
+ */
+proto.covid19api.Location.prototype.getGeoLat = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 11, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.covid19api.Location} returns this
+ */
+proto.covid19api.Location.prototype.setGeoLat = function(value) {
+  return jspb.Message.setProto3FloatField(this, 11, value);
+};
+
+
+/**
+ * optional double geo_lng = 12;
+ * @return {number}
+ */
+proto.covid19api.Location.prototype.getGeoLng = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 12, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.covid19api.Location} returns this
+ */
+proto.covid19api.Location.prototype.setGeoLng = function(value) {
+  return jspb.Message.setProto3FloatField(this, 12, value);
+};
+
+
+/**
+ * optional uint64 geo_precision_rad = 13;
+ * @return {number}
+ */
+proto.covid19api.Location.prototype.getGeoPrecisionRad = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 13, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.covid19api.Location} returns this
+ */
+proto.covid19api.Location.prototype.setGeoPrecisionRad = function(value) {
+  return jspb.Message.setProto3IntField(this, 13, value);
 };
 
 

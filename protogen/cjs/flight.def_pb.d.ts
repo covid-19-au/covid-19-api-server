@@ -1,6 +1,5 @@
 import * as jspb from "google-protobuf"
 
-import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb';
 import * as common_pb from './common_pb';
 
 export class FlightDetail extends jspb.Message {
@@ -13,15 +12,11 @@ export class FlightDetail extends jspb.Message {
   getIcaoCode(): string;
   setIcaoCode(value: string): void;
 
-  getDepDate(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setDepDate(value?: google_protobuf_timestamp_pb.Timestamp): void;
-  hasDepDate(): boolean;
-  clearDepDate(): void;
+  getDepDate(): number;
+  setDepDate(value: number): void;
 
-  getArrDate(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setArrDate(value?: google_protobuf_timestamp_pb.Timestamp): void;
-  hasArrDate(): boolean;
-  clearArrDate(): void;
+  getArrDate(): number;
+  setArrDate(value: number): void;
 
   getDepAirport(): string;
   setDepAirport(value: string): void;
@@ -47,8 +42,8 @@ export namespace FlightDetail {
     flightNum: string,
     iataCode: string,
     icaoCode: string,
-    depDate?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    arrDate?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    depDate: number,
+    arrDate: number,
     depAirport: string,
     arrAirport: string,
     affectedRowsList: Array<number>,

@@ -14,9 +14,6 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
-func (this *NamedLocation) Validate() error {
-	return nil
-}
-func (this *GPSLocation) Validate() error {
+func (this *Location) Validate() error {
 	return nil
 }

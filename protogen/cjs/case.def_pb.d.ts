@@ -1,20 +1,18 @@
 import * as jspb from "google-protobuf"
 
-import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb';
+import * as github_com_mwitkow_go$proto$validators_validator_pb from './github.com/mwitkow/go-proto-validators/validator_pb';
 import * as common_pb from './common_pb';
 import * as geo_def_pb from './geo.def_pb';
 
 export class ExistingCaseDetail extends jspb.Message {
-  getCaseUuid(): string;
-  setCaseUuid(value: string): void;
+  getCaseId(): string;
+  setCaseId(value: string): void;
 
   getPatientId(): string;
   setPatientId(value: string): void;
 
-  getReportedTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setReportedTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
-  hasReportedTime(): boolean;
-  clearReportedTime(): void;
+  getReportedTime(): number;
+  setReportedTime(value: number): void;
 
   getState(): CaseState;
   setState(value: CaseState): void;
@@ -22,17 +20,10 @@ export class ExistingCaseDetail extends jspb.Message {
   getInfectSrc(): InfectionSource;
   setInfectSrc(value: InfectionSource): void;
 
-  getNamedLocation(): geo_def_pb.NamedLocation | undefined;
-  setNamedLocation(value?: geo_def_pb.NamedLocation): void;
-  hasNamedLocation(): boolean;
-  clearNamedLocation(): void;
-
-  getGpsLocation(): geo_def_pb.GPSLocation | undefined;
-  setGpsLocation(value?: geo_def_pb.GPSLocation): void;
-  hasGpsLocation(): boolean;
-  clearGpsLocation(): void;
-
-  getLocationCase(): ExistingCaseDetail.LocationCase;
+  getLocation(): geo_def_pb.Location | undefined;
+  setLocation(value?: geo_def_pb.Location): void;
+  hasLocation(): boolean;
+  clearLocation(): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ExistingCaseDetail.AsObject;
@@ -44,19 +35,12 @@ export class ExistingCaseDetail extends jspb.Message {
 
 export namespace ExistingCaseDetail {
   export type AsObject = {
-    caseUuid: string,
+    caseId: string,
     patientId: string,
-    reportedTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    reportedTime: number,
     state: CaseState,
     infectSrc: InfectionSource,
-    namedLocation?: geo_def_pb.NamedLocation.AsObject,
-    gpsLocation?: geo_def_pb.GPSLocation.AsObject,
-  }
-
-  export enum LocationCase { 
-    LOCATION_NOT_SET = 0,
-    NAMED_LOCATION = 21,
-    GPS_LOCATION = 22,
+    location?: geo_def_pb.Location.AsObject,
   }
 }
 
@@ -64,10 +48,8 @@ export class NewCaseDetail extends jspb.Message {
   getPatientId(): string;
   setPatientId(value: string): void;
 
-  getReportedTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setReportedTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
-  hasReportedTime(): boolean;
-  clearReportedTime(): void;
+  getReportedTime(): number;
+  setReportedTime(value: number): void;
 
   getState(): CaseState;
   setState(value: CaseState): void;
@@ -75,17 +57,10 @@ export class NewCaseDetail extends jspb.Message {
   getInfectSrc(): InfectionSource;
   setInfectSrc(value: InfectionSource): void;
 
-  getNamedLocation(): geo_def_pb.NamedLocation | undefined;
-  setNamedLocation(value?: geo_def_pb.NamedLocation): void;
-  hasNamedLocation(): boolean;
-  clearNamedLocation(): void;
-
-  getGpsLocation(): geo_def_pb.GPSLocation | undefined;
-  setGpsLocation(value?: geo_def_pb.GPSLocation): void;
-  hasGpsLocation(): boolean;
-  clearGpsLocation(): void;
-
-  getLocationCase(): NewCaseDetail.LocationCase;
+  getLocation(): geo_def_pb.Location | undefined;
+  setLocation(value?: geo_def_pb.Location): void;
+  hasLocation(): boolean;
+  clearLocation(): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): NewCaseDetail.AsObject;
@@ -98,47 +73,29 @@ export class NewCaseDetail extends jspb.Message {
 export namespace NewCaseDetail {
   export type AsObject = {
     patientId: string,
-    reportedTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    reportedTime: number,
     state: CaseState,
     infectSrc: InfectionSource,
-    namedLocation?: geo_def_pb.NamedLocation.AsObject,
-    gpsLocation?: geo_def_pb.GPSLocation.AsObject,
-  }
-
-  export enum LocationCase { 
-    LOCATION_NOT_SET = 0,
-    NAMED_LOCATION = 21,
-    GPS_LOCATION = 22,
+    location?: geo_def_pb.Location.AsObject,
   }
 }
 
 export class GetCasesRequest extends jspb.Message {
-  getNamedLocation(): geo_def_pb.NamedLocation | undefined;
-  setNamedLocation(value?: geo_def_pb.NamedLocation): void;
-  hasNamedLocation(): boolean;
-  clearNamedLocation(): void;
-
-  getGpsLocation(): geo_def_pb.GPSLocation | undefined;
-  setGpsLocation(value?: geo_def_pb.GPSLocation): void;
-  hasGpsLocation(): boolean;
-  clearGpsLocation(): void;
+  getLocation(): geo_def_pb.Location | undefined;
+  setLocation(value?: geo_def_pb.Location): void;
+  hasLocation(): boolean;
+  clearLocation(): void;
 
   getStatesList(): Array<CaseState>;
   setStatesList(value: Array<CaseState>): void;
   clearStatesList(): void;
   addStates(value: CaseState, index?: number): void;
 
-  getStartTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setStartTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
-  hasStartTime(): boolean;
-  clearStartTime(): void;
+  getStartTime(): number;
+  setStartTime(value: number): void;
 
-  getEndTime(): google_protobuf_timestamp_pb.Timestamp | undefined;
-  setEndTime(value?: google_protobuf_timestamp_pb.Timestamp): void;
-  hasEndTime(): boolean;
-  clearEndTime(): void;
-
-  getLocationCase(): GetCasesRequest.LocationCase;
+  getEndTime(): number;
+  setEndTime(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetCasesRequest.AsObject;
@@ -150,17 +107,10 @@ export class GetCasesRequest extends jspb.Message {
 
 export namespace GetCasesRequest {
   export type AsObject = {
-    namedLocation?: geo_def_pb.NamedLocation.AsObject,
-    gpsLocation?: geo_def_pb.GPSLocation.AsObject,
+    location?: geo_def_pb.Location.AsObject,
     statesList: Array<CaseState>,
-    startTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    endTime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-  }
-
-  export enum LocationCase { 
-    LOCATION_NOT_SET = 0,
-    NAMED_LOCATION = 1,
-    GPS_LOCATION = 2,
+    startTime: number,
+    endTime: number,
   }
 }
 
@@ -187,6 +137,90 @@ export namespace GetCasesResponse {
   export type AsObject = {
     pagination?: common_pb.Pagination.AsObject,
     casesList: Array<ExistingCaseDetail.AsObject>,
+  }
+}
+
+export class GetCaseStatsRequest extends jspb.Message {
+  getNoCache(): boolean;
+  setNoCache(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetCaseStatsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetCaseStatsRequest): GetCaseStatsRequest.AsObject;
+  static serializeBinaryToWriter(message: GetCaseStatsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetCaseStatsRequest;
+  static deserializeBinaryFromReader(message: GetCaseStatsRequest, reader: jspb.BinaryReader): GetCaseStatsRequest;
+}
+
+export namespace GetCaseStatsRequest {
+  export type AsObject = {
+    noCache: boolean,
+  }
+}
+
+export class GetCaseStatsResponse extends jspb.Message {
+  getLastUpdTime(): number;
+  setLastUpdTime(value: number): void;
+
+  getConfirmedCount(): number;
+  setConfirmedCount(value: number): void;
+
+  getConfirmedDiffYesterday(): number;
+  setConfirmedDiffYesterday(value: number): void;
+
+  getDeathsCount(): number;
+  setDeathsCount(value: number): void;
+
+  getDeathsDiffYesterday(): number;
+  setDeathsDiffYesterday(value: number): void;
+
+  getRecoveredCount(): number;
+  setRecoveredCount(value: number): void;
+
+  getRecoveredDiffYesterday(): number;
+  setRecoveredDiffYesterday(value: number): void;
+
+  getTestedCount(): number;
+  setTestedCount(value: number): void;
+
+  getTestedDiffYesterday(): number;
+  setTestedDiffYesterday(value: number): void;
+
+  getInHospitalCount(): number;
+  setInHospitalCount(value: number): void;
+
+  getInHospitalDiffYesterday(): number;
+  setInHospitalDiffYesterday(value: number): void;
+
+  getInIcuCount(): number;
+  setInIcuCount(value: number): void;
+
+  getInIcuDiffYesterday(): number;
+  setInIcuDiffYesterday(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetCaseStatsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetCaseStatsResponse): GetCaseStatsResponse.AsObject;
+  static serializeBinaryToWriter(message: GetCaseStatsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetCaseStatsResponse;
+  static deserializeBinaryFromReader(message: GetCaseStatsResponse, reader: jspb.BinaryReader): GetCaseStatsResponse;
+}
+
+export namespace GetCaseStatsResponse {
+  export type AsObject = {
+    lastUpdTime: number,
+    confirmedCount: number,
+    confirmedDiffYesterday: number,
+    deathsCount: number,
+    deathsDiffYesterday: number,
+    recoveredCount: number,
+    recoveredDiffYesterday: number,
+    testedCount: number,
+    testedDiffYesterday: number,
+    inHospitalCount: number,
+    inHospitalDiffYesterday: number,
+    inIcuCount: number,
+    inIcuDiffYesterday: number,
   }
 }
 
@@ -231,10 +265,10 @@ export namespace PutCasesRequest {
 }
 
 export class DelCasesRequest extends jspb.Message {
-  getCaseUuidsList(): Array<string>;
-  setCaseUuidsList(value: Array<string>): void;
-  clearCaseUuidsList(): void;
-  addCaseUuids(value: string, index?: number): void;
+  getCaseIdsList(): Array<string>;
+  setCaseIdsList(value: Array<string>): void;
+  clearCaseIdsList(): void;
+  addCaseIds(value: string, index?: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DelCasesRequest.AsObject;
@@ -246,7 +280,7 @@ export class DelCasesRequest extends jspb.Message {
 
 export namespace DelCasesRequest {
   export type AsObject = {
-    caseUuidsList: Array<string>,
+    caseIdsList: Array<string>,
   }
 }
 

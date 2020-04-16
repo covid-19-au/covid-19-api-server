@@ -2,11 +2,12 @@ syntax = "proto3";
 
 package covid19api;
 
+option go_package = ".;covid19api";
 option java_multiple_files = true;
 option java_outer_classname = "CaseInterfaceProto";
 option java_package = "org.covid19.api";
 
-import "google/protobuf/timestamp.proto";
+import "github.com/mwitkow/go-proto-validators/validator.proto";
 
 import "common.proto";
 import "geo.def.proto";
@@ -34,44 +35,35 @@ enum InfectionSource {
 
 // ExistingCaseDetail describes an existing (exists in DB) case
 message ExistingCaseDetail {
-    string case_uuid = 1; // Case UUID to be referenced internally
+    string case_id = 1 [(validator.field) = {string_not_empty: true}]; // Case IDs to be referenced internally
     string patient_id = 2; // Anonymous patient identifier
-    google.protobuf.Timestamp reported_time = 3; // Reported timestamp
+    int64 reported_time = 3 [(validator.field) = {int_gt: 0}]; // Reported timestamp
 
-    CaseState state = 11; // Case state
-    InfectionSource infect_src = 12; // Source of infection
+    CaseState state = 11 [(validator.field) = {is_in_enum: true, msg_exists: true}]; // Case state
+    InfectionSource infect_src = 12 [(validator.field) = {is_in_enum: true, int_gt: 0, msg_exists: true}]; // Source of infection
 
-    oneof location {
-        NamedLocation named_location = 21;
-        GPSLocation gps_location = 22;
-    }
+    Location location = 21 [(validator.field) = {msg_exists: true}];
 }
 
 // NewCaseDetail describes a new (not exists in DB) case
 message NewCaseDetail {
     string patient_id = 2; // Anonymous patient identifier
-    google.protobuf.Timestamp reported_time = 3; // Reported timestamp
+    int64 reported_time = 3 [(validator.field) = {int_gt: 0}]; // Reported timestamp
 
-    CaseState state = 11; // Case state
-    InfectionSource infect_src = 12; // Source of infection
+    CaseState state = 11 [(validator.field) = {is_in_enum: true, msg_exists: true}]; // Case state
+    InfectionSource infect_src = 12 [(validator.field) = {is_in_enum: true, int_gt: 0, msg_exists: true}]; // Source of infection
 
-    oneof location {
-        NamedLocation named_location = 21;
-        GPSLocation gps_location = 22;
-    }
+    Location location = 21 [(validator.field) = {msg_exists: true}];
 }
 
 // GetCasesRequest describes request payload for querying cases match specific criteria
 message GetCasesRequest {
-    oneof location {
-        NamedLocation named_location = 1;
-        GPSLocation gps_location = 2;
-    }
+    Location location = 1;
 
-    repeated CaseState states = 11; // Case states
+    repeated CaseState states = 11 [(validator.field) = {repeated_count_min : 1}]; // Case states
 
-    google.protobuf.Timestamp start_time = 21; // Start Unix timestamp
-    google.protobuf.Timestamp end_time = 22; // End Unix timestamp
+    int64 start_time = 21 [(validator.field) = {int_gt: 0}]; // Start Unix timestamp
+    int64 end_time = 22 [(validator.field) = {int_gt: 0}]; // End Unix timestamp
 }
 
 // GetCasesResponse describes response payload for matched cases
@@ -81,17 +73,43 @@ message GetCasesResponse {
     repeated ExistingCaseDetail cases = 11;
 }
 
+message GetCaseStatsRequest {
+    bool no_cache = 1;
+}
+
+message GetCaseStatsResponse {
+    int64 last_upd_time = 1;
+
+    int64 confirmed_count = 11;
+    int64 confirmed_diff_yesterday = 12;
+
+    int64 deaths_count = 21;
+    int64 deaths_diff_yesterday = 22;
+
+    int64 recovered_count = 31;
+    int64 recovered_diff_yesterday = 32;
+
+    int64 tested_count = 41;
+    int64 tested_diff_yesterday = 42;
+
+    int64 in_hospital_count = 51;
+    int64 in_hospital_diff_yesterday = 52;
+
+    int64 in_icu_count = 61;
+    int64 in_icu_diff_yesterday = 62;
+}
+
 // AddCasesRequest describes request payload for adding cases
 message AddCasesRequest {
-    repeated NewCaseDetail cases = 1;
+    repeated NewCaseDetail cases = 1 [(validator.field) = {repeated_count_min : 1}];
 }
 
 // PutCasesRequest describes request payload for updating existing cases
 message PutCasesRequest {
-    repeated ExistingCaseDetail cases = 1;
+    repeated ExistingCaseDetail cases = 1 [(validator.field) = {repeated_count_min : 1}];
 }
 
 // DelCasesRequest describes request payload for deleting existing cases
 message DelCasesRequest {
-    repeated string case_uuids = 1;
+    repeated string case_ids = 1 [(validator.field) = {repeated_count_min : 1}];
 }

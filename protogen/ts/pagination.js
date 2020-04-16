@@ -70,7 +70,7 @@ proto.covid19api.Pagination.toObject = function(includeInstance, msg) {
     totalResults: jspb.Message.getFieldWithDefault(msg, 1, 0),
     totalPages: jspb.Message.getFieldWithDefault(msg, 2, 0),
     currentPage: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    numPerPage: jspb.Message.getFieldWithDefault(msg, 4, 0)
+    pageSize: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -121,7 +121,7 @@ proto.covid19api.Pagination.deserializeBinaryFromReader = function(msg, reader) 
       break;
     case 4:
       var value = /** @type {number} */ (reader.readUint32());
-      msg.setNumPerPage(value);
+      msg.setPageSize(value);
       break;
     default:
       reader.skipField();
@@ -173,7 +173,7 @@ proto.covid19api.Pagination.serializeBinaryToWriter = function(message, writer) 
       f
     );
   }
-  f = message.getNumPerPage();
+  f = message.getPageSize();
   if (f !== 0) {
     writer.writeUint32(
       4,
@@ -238,10 +238,10 @@ proto.covid19api.Pagination.prototype.setCurrentPage = function(value) {
 
 
 /**
- * optional uint32 num_per_page = 4;
+ * optional uint32 page_size = 4;
  * @return {number}
  */
-proto.covid19api.Pagination.prototype.getNumPerPage = function() {
+proto.covid19api.Pagination.prototype.getPageSize = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
@@ -250,7 +250,7 @@ proto.covid19api.Pagination.prototype.getNumPerPage = function() {
  * @param {number} value
  * @return {!proto.covid19api.Pagination} returns this
  */
-proto.covid19api.Pagination.prototype.setNumPerPage = function(value) {
+proto.covid19api.Pagination.prototype.setPageSize = function(value) {
   return jspb.Message.setProto3IntField(this, 4, value);
 };
 

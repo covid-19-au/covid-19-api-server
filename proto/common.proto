@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package covid19api;
 
+option go_package = ".;covid19api";
 option java_multiple_files = true;
 option java_outer_classname = "CommonProto";
 option java_package = "org.covid19.api";
@@ -11,5 +12,5 @@ message Pagination {
     uint32 total_results = 1;
     uint32 total_pages = 2;
     uint32 current_page = 3;
-    uint32 num_per_page = 4;
+    uint32 page_size = 4;
 }

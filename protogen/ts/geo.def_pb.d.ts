@@ -1,6 +1,6 @@
 import * as jspb from "google-protobuf"
 
-export class NamedLocation extends jspb.Message {
+export class Location extends jspb.Message {
   getCountry(): string;
   setCountry(value: string): void;
 
@@ -13,46 +13,32 @@ export class NamedLocation extends jspb.Message {
   getPostalCode(): string;
   setPostalCode(value: string): void;
 
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): NamedLocation.AsObject;
-  static toObject(includeInstance: boolean, msg: NamedLocation): NamedLocation.AsObject;
-  static serializeBinaryToWriter(message: NamedLocation, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): NamedLocation;
-  static deserializeBinaryFromReader(message: NamedLocation, reader: jspb.BinaryReader): NamedLocation;
-}
-
-export namespace NamedLocation {
-  export type AsObject = {
-    country: string,
-    region: string,
-    city: string,
-    postalCode: string,
-  }
-}
-
-export class GPSLocation extends jspb.Message {
   getGeoLat(): number;
   setGeoLat(value: number): void;
 
   getGeoLng(): number;
   setGeoLng(value: number): void;
 
-  getPrecisionRad(): number;
-  setPrecisionRad(value: number): void;
+  getGeoPrecisionRad(): number;
+  setGeoPrecisionRad(value: number): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GPSLocation.AsObject;
-  static toObject(includeInstance: boolean, msg: GPSLocation): GPSLocation.AsObject;
-  static serializeBinaryToWriter(message: GPSLocation, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GPSLocation;
-  static deserializeBinaryFromReader(message: GPSLocation, reader: jspb.BinaryReader): GPSLocation;
+  toObject(includeInstance?: boolean): Location.AsObject;
+  static toObject(includeInstance: boolean, msg: Location): Location.AsObject;
+  static serializeBinaryToWriter(message: Location, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Location;
+  static deserializeBinaryFromReader(message: Location, reader: jspb.BinaryReader): Location;
 }
 
-export namespace GPSLocation {
+export namespace Location {
   export type AsObject = {
+    country: string,
+    region: string,
+    city: string,
+    postalCode: string,
     geoLat: number,
     geoLng: number,
-    precisionRad: number,
+    geoPrecisionRad: number,
   }
 }
 

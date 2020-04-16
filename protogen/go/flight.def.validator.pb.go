@@ -7,7 +7,6 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/golang/protobuf/ptypes/timestamp"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
 
@@ -17,16 +16,6 @@ var _ = fmt.Errorf
 var _ = math.Inf
 
 func (this *FlightDetail) Validate() error {
-	if this.DepDate != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.DepDate); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("DepDate", err)
-		}
-	}
-	if this.ArrDate != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.ArrDate); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("ArrDate", err)
-		}
-	}
 	return nil
 }
 func (this *GetFlightsRequest) Validate() error {

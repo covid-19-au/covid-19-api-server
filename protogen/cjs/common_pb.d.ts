@@ -10,8 +10,8 @@ export class Pagination extends jspb.Message {
   getCurrentPage(): number;
   setCurrentPage(value: number): void;
 
-  getNumPerPage(): number;
-  setNumPerPage(value: number): void;
+  getPageSize(): number;
+  setPageSize(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Pagination.AsObject;
@@ -26,7 +26,7 @@ export namespace Pagination {
     totalResults: number,
     totalPages: number,
     currentPage: number,
-    numPerPage: number,
+    pageSize: number,
   }
 }
 

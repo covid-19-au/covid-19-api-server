@@ -7,7 +7,7 @@ import (
 	fmt "fmt"
 	math "math"
 	proto "github.com/golang/protobuf/proto"
-	_ "github.com/golang/protobuf/ptypes/timestamp"
+	_ "github.com/mwitkow/go-proto-validators"
 	github_com_mwitkow_go_proto_validators "github.com/mwitkow/go-proto-validators"
 )
 
@@ -17,73 +17,62 @@ var _ = fmt.Errorf
 var _ = math.Inf
 
 func (this *ExistingCaseDetail) Validate() error {
-	if this.ReportedTime != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.ReportedTime); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("ReportedTime", err)
-		}
+	if this.CaseId == "" {
+		return github_com_mwitkow_go_proto_validators.FieldError("CaseId", fmt.Errorf(`value '%v' must not be an empty string`, this.CaseId))
 	}
-	if oneOfNester, ok := this.GetLocation().(*ExistingCaseDetail_NamedLocation); ok {
-		if oneOfNester.NamedLocation != nil {
-			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(oneOfNester.NamedLocation); err != nil {
-				return github_com_mwitkow_go_proto_validators.FieldError("NamedLocation", err)
-			}
-		}
+	if !(this.ReportedTime > 0) {
+		return github_com_mwitkow_go_proto_validators.FieldError("ReportedTime", fmt.Errorf(`value '%v' must be greater than '0'`, this.ReportedTime))
 	}
-	if oneOfNester, ok := this.GetLocation().(*ExistingCaseDetail_GpsLocation); ok {
-		if oneOfNester.GpsLocation != nil {
-			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(oneOfNester.GpsLocation); err != nil {
-				return github_com_mwitkow_go_proto_validators.FieldError("GpsLocation", err)
-			}
+	if _, ok := CaseState_name[int32(this.State)]; !ok {
+		return github_com_mwitkow_go_proto_validators.FieldError("State", fmt.Errorf(`value '%v' must be a valid CaseState field`, this.State))
+	}
+	if _, ok := InfectionSource_name[int32(this.InfectSrc)]; !ok {
+		return github_com_mwitkow_go_proto_validators.FieldError("InfectSrc", fmt.Errorf(`value '%v' must be a valid InfectionSource field`, this.InfectSrc))
+	}
+	if nil == this.Location {
+		return github_com_mwitkow_go_proto_validators.FieldError("Location", fmt.Errorf("message must exist"))
+	}
+	if this.Location != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Location); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Location", err)
 		}
 	}
 	return nil
 }
 func (this *NewCaseDetail) Validate() error {
-	if this.ReportedTime != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.ReportedTime); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("ReportedTime", err)
-		}
+	if !(this.ReportedTime > 0) {
+		return github_com_mwitkow_go_proto_validators.FieldError("ReportedTime", fmt.Errorf(`value '%v' must be greater than '0'`, this.ReportedTime))
 	}
-	if oneOfNester, ok := this.GetLocation().(*NewCaseDetail_NamedLocation); ok {
-		if oneOfNester.NamedLocation != nil {
-			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(oneOfNester.NamedLocation); err != nil {
-				return github_com_mwitkow_go_proto_validators.FieldError("NamedLocation", err)
-			}
-		}
+	if _, ok := CaseState_name[int32(this.State)]; !ok {
+		return github_com_mwitkow_go_proto_validators.FieldError("State", fmt.Errorf(`value '%v' must be a valid CaseState field`, this.State))
 	}
-	if oneOfNester, ok := this.GetLocation().(*NewCaseDetail_GpsLocation); ok {
-		if oneOfNester.GpsLocation != nil {
-			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(oneOfNester.GpsLocation); err != nil {
-				return github_com_mwitkow_go_proto_validators.FieldError("GpsLocation", err)
-			}
+	if _, ok := InfectionSource_name[int32(this.InfectSrc)]; !ok {
+		return github_com_mwitkow_go_proto_validators.FieldError("InfectSrc", fmt.Errorf(`value '%v' must be a valid InfectionSource field`, this.InfectSrc))
+	}
+	if nil == this.Location {
+		return github_com_mwitkow_go_proto_validators.FieldError("Location", fmt.Errorf("message must exist"))
+	}
+	if this.Location != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Location); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Location", err)
 		}
 	}
 	return nil
 }
 func (this *GetCasesRequest) Validate() error {
-	if oneOfNester, ok := this.GetLocation().(*GetCasesRequest_NamedLocation); ok {
-		if oneOfNester.NamedLocation != nil {
-			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(oneOfNester.NamedLocation); err != nil {
-				return github_com_mwitkow_go_proto_validators.FieldError("NamedLocation", err)
-			}
+	if this.Location != nil {
+		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.Location); err != nil {
+			return github_com_mwitkow_go_proto_validators.FieldError("Location", err)
 		}
 	}
-	if oneOfNester, ok := this.GetLocation().(*GetCasesRequest_GpsLocation); ok {
-		if oneOfNester.GpsLocation != nil {
-			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(oneOfNester.GpsLocation); err != nil {
-				return github_com_mwitkow_go_proto_validators.FieldError("GpsLocation", err)
-			}
-		}
+	if len(this.States) < 1 {
+		return github_com_mwitkow_go_proto_validators.FieldError("States", fmt.Errorf(`value '%v' must contain at least 1 elements`, this.States))
 	}
-	if this.StartTime != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.StartTime); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("StartTime", err)
-		}
+	if !(this.StartTime > 0) {
+		return github_com_mwitkow_go_proto_validators.FieldError("StartTime", fmt.Errorf(`value '%v' must be greater than '0'`, this.StartTime))
 	}
-	if this.EndTime != nil {
-		if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(this.EndTime); err != nil {
-			return github_com_mwitkow_go_proto_validators.FieldError("EndTime", err)
-		}
+	if !(this.EndTime > 0) {
+		return github_com_mwitkow_go_proto_validators.FieldError("EndTime", fmt.Errorf(`value '%v' must be greater than '0'`, this.EndTime))
 	}
 	return nil
 }
@@ -102,7 +91,16 @@ func (this *GetCasesResponse) Validate() error {
 	}
 	return nil
 }
+func (this *GetCaseStatsRequest) Validate() error {
+	return nil
+}
+func (this *GetCaseStatsResponse) Validate() error {
+	return nil
+}
 func (this *AddCasesRequest) Validate() error {
+	if len(this.Cases) < 1 {
+		return github_com_mwitkow_go_proto_validators.FieldError("Cases", fmt.Errorf(`value '%v' must contain at least 1 elements`, this.Cases))
+	}
 	for _, item := range this.Cases {
 		if item != nil {
 			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
@@ -113,6 +111,9 @@ func (this *AddCasesRequest) Validate() error {
 	return nil
 }
 func (this *PutCasesRequest) Validate() error {
+	if len(this.Cases) < 1 {
+		return github_com_mwitkow_go_proto_validators.FieldError("Cases", fmt.Errorf(`value '%v' must contain at least 1 elements`, this.Cases))
+	}
 	for _, item := range this.Cases {
 		if item != nil {
 			if err := github_com_mwitkow_go_proto_validators.CallValidatorIfExists(item); err != nil {
@@ -123,5 +124,8 @@ func (this *PutCasesRequest) Validate() error {
 	return nil
 }
 func (this *DelCasesRequest) Validate() error {
+	if len(this.CaseIds) < 1 {
+		return github_com_mwitkow_go_proto_validators.FieldError("CaseIds", fmt.Errorf(`value '%v' must contain at least 1 elements`, this.CaseIds))
+	}
 	return nil
 }

@@ -237,6 +237,86 @@ proto.covid19api.PublicQueryPromiseClient.prototype.getCases =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.covid19api.GetCaseStatsRequest,
+ *   !proto.covid19api.GetCaseStatsResponse>}
+ */
+const methodDescriptor_PublicQuery_GetCaseStats = new grpc.web.MethodDescriptor(
+  '/covid19api.PublicQuery/GetCaseStats',
+  grpc.web.MethodType.UNARY,
+  case_def_pb.GetCaseStatsRequest,
+  case_def_pb.GetCaseStatsResponse,
+  /**
+   * @param {!proto.covid19api.GetCaseStatsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  case_def_pb.GetCaseStatsResponse.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.covid19api.GetCaseStatsRequest,
+ *   !proto.covid19api.GetCaseStatsResponse>}
+ */
+const methodInfo_PublicQuery_GetCaseStats = new grpc.web.AbstractClientBase.MethodInfo(
+  case_def_pb.GetCaseStatsResponse,
+  /**
+   * @param {!proto.covid19api.GetCaseStatsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  case_def_pb.GetCaseStatsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.covid19api.GetCaseStatsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.covid19api.GetCaseStatsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.covid19api.GetCaseStatsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.covid19api.PublicQueryClient.prototype.getCaseStats =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/covid19api.PublicQuery/GetCaseStats',
+      request,
+      metadata || {},
+      methodDescriptor_PublicQuery_GetCaseStats,
+      callback);
+};
+
+
+/**
+ * @param {!proto.covid19api.GetCaseStatsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.covid19api.GetCaseStatsResponse>}
+ *     A native promise that resolves to the response
+ */
+proto.covid19api.PublicQueryPromiseClient.prototype.getCaseStats =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/covid19api.PublicQuery/GetCaseStats',
+      request,
+      metadata || {},
+      methodDescriptor_PublicQuery_GetCaseStats);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.covid19api.GetFlightsRequest,
  *   !proto.covid19api.GetFlightsResponse>}
  */

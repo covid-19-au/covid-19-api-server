@@ -8,7 +8,7 @@
  */
 // GENERATED CODE -- DO NOT EDIT!
 
-goog.provide('proto.covid19api.DelCasesRequest');
+goog.provide('proto.covid19api.GetCaseStatsRequest');
 
 goog.require('jspb.BinaryReader');
 goog.require('jspb.BinaryWriter');
@@ -24,24 +24,17 @@ goog.require('jspb.Message');
  * @extends {jspb.Message}
  * @constructor
  */
-proto.covid19api.DelCasesRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.covid19api.DelCasesRequest.repeatedFields_, null);
+proto.covid19api.GetCaseStatsRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.covid19api.DelCasesRequest, jspb.Message);
+goog.inherits(proto.covid19api.GetCaseStatsRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.covid19api.DelCasesRequest.displayName = 'proto.covid19api.DelCasesRequest';
+  proto.covid19api.GetCaseStatsRequest.displayName = 'proto.covid19api.GetCaseStatsRequest';
 }
-
-/**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
- */
-proto.covid19api.DelCasesRequest.repeatedFields_ = [1];
 
 
 
@@ -58,8 +51,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.covid19api.DelCasesRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.covid19api.DelCasesRequest.toObject(opt_includeInstance, this);
+proto.covid19api.GetCaseStatsRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.covid19api.GetCaseStatsRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -68,13 +61,13 @@ proto.covid19api.DelCasesRequest.prototype.toObject = function(opt_includeInstan
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.covid19api.DelCasesRequest} msg The msg instance to transform.
+ * @param {!proto.covid19api.GetCaseStatsRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.covid19api.DelCasesRequest.toObject = function(includeInstance, msg) {
+proto.covid19api.GetCaseStatsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    caseIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+    noCache: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
   };
 
   if (includeInstance) {
@@ -88,23 +81,23 @@ proto.covid19api.DelCasesRequest.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.covid19api.DelCasesRequest}
+ * @return {!proto.covid19api.GetCaseStatsRequest}
  */
-proto.covid19api.DelCasesRequest.deserializeBinary = function(bytes) {
+proto.covid19api.GetCaseStatsRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.covid19api.DelCasesRequest;
-  return proto.covid19api.DelCasesRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.covid19api.GetCaseStatsRequest;
+  return proto.covid19api.GetCaseStatsRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.covid19api.DelCasesRequest} msg The message object to deserialize into.
+ * @param {!proto.covid19api.GetCaseStatsRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.covid19api.DelCasesRequest}
+ * @return {!proto.covid19api.GetCaseStatsRequest}
  */
-proto.covid19api.DelCasesRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.covid19api.GetCaseStatsRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -112,8 +105,8 @@ proto.covid19api.DelCasesRequest.deserializeBinaryFromReader = function(msg, rea
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.addCaseIds(value);
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setNoCache(value);
       break;
     default:
       reader.skipField();
@@ -128,9 +121,9 @@ proto.covid19api.DelCasesRequest.deserializeBinaryFromReader = function(msg, rea
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.covid19api.DelCasesRequest.prototype.serializeBinary = function() {
+proto.covid19api.GetCaseStatsRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.covid19api.DelCasesRequest.serializeBinaryToWriter(this, writer);
+  proto.covid19api.GetCaseStatsRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -138,15 +131,15 @@ proto.covid19api.DelCasesRequest.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.covid19api.DelCasesRequest} message
+ * @param {!proto.covid19api.GetCaseStatsRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.covid19api.DelCasesRequest.serializeBinaryToWriter = function(message, writer) {
+proto.covid19api.GetCaseStatsRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getCaseIdsList();
-  if (f.length > 0) {
-    writer.writeRepeatedString(
+  f = message.getNoCache();
+  if (f) {
+    writer.writeBool(
       1,
       f
     );
@@ -155,39 +148,20 @@ proto.covid19api.DelCasesRequest.serializeBinaryToWriter = function(message, wri
 
 
 /**
- * repeated string case_ids = 1;
- * @return {!Array<string>}
+ * optional bool no_cache = 1;
+ * @return {boolean}
  */
-proto.covid19api.DelCasesRequest.prototype.getCaseIdsList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
+proto.covid19api.GetCaseStatsRequest.prototype.getNoCache = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 1, false));
 };
 
 
 /**
- * @param {!Array<string>} value
- * @return {!proto.covid19api.DelCasesRequest} returns this
+ * @param {boolean} value
+ * @return {!proto.covid19api.GetCaseStatsRequest} returns this
  */
-proto.covid19api.DelCasesRequest.prototype.setCaseIdsList = function(value) {
-  return jspb.Message.setField(this, 1, value || []);
-};
-
-
-/**
- * @param {string} value
- * @param {number=} opt_index
- * @return {!proto.covid19api.DelCasesRequest} returns this
- */
-proto.covid19api.DelCasesRequest.prototype.addCaseIds = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 1, value, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.covid19api.DelCasesRequest} returns this
- */
-proto.covid19api.DelCasesRequest.prototype.clearCaseIdsList = function() {
-  return this.setCaseIdsList([]);
+proto.covid19api.GetCaseStatsRequest.prototype.setNoCache = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 

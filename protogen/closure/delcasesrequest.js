@@ -74,7 +74,7 @@ proto.covid19api.DelCasesRequest.prototype.toObject = function(opt_includeInstan
  */
 proto.covid19api.DelCasesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    caseUuidsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
+    caseIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -113,7 +113,7 @@ proto.covid19api.DelCasesRequest.deserializeBinaryFromReader = function(msg, rea
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.addCaseUuids(value);
+      msg.addCaseIds(value);
       break;
     default:
       reader.skipField();
@@ -144,7 +144,7 @@ proto.covid19api.DelCasesRequest.prototype.serializeBinary = function() {
  */
 proto.covid19api.DelCasesRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getCaseUuidsList();
+  f = message.getCaseIdsList();
   if (f.length > 0) {
     writer.writeRepeatedString(
       1,
@@ -155,10 +155,10 @@ proto.covid19api.DelCasesRequest.serializeBinaryToWriter = function(message, wri
 
 
 /**
- * repeated string case_uuids = 1;
+ * repeated string case_ids = 1;
  * @return {!Array<string>}
  */
-proto.covid19api.DelCasesRequest.prototype.getCaseUuidsList = function() {
+proto.covid19api.DelCasesRequest.prototype.getCaseIdsList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
@@ -167,7 +167,7 @@ proto.covid19api.DelCasesRequest.prototype.getCaseUuidsList = function() {
  * @param {!Array<string>} value
  * @return {!proto.covid19api.DelCasesRequest} returns this
  */
-proto.covid19api.DelCasesRequest.prototype.setCaseUuidsList = function(value) {
+proto.covid19api.DelCasesRequest.prototype.setCaseIdsList = function(value) {
   return jspb.Message.setField(this, 1, value || []);
 };
 
@@ -177,7 +177,7 @@ proto.covid19api.DelCasesRequest.prototype.setCaseUuidsList = function(value) {
  * @param {number=} opt_index
  * @return {!proto.covid19api.DelCasesRequest} returns this
  */
-proto.covid19api.DelCasesRequest.prototype.addCaseUuids = function(value, opt_index) {
+proto.covid19api.DelCasesRequest.prototype.addCaseIds = function(value, opt_index) {
   return jspb.Message.addToRepeatedField(this, 1, value, opt_index);
 };
 
@@ -186,8 +186,8 @@ proto.covid19api.DelCasesRequest.prototype.addCaseUuids = function(value, opt_in
  * Clears the list making it empty but non-null.
  * @return {!proto.covid19api.DelCasesRequest} returns this
  */
-proto.covid19api.DelCasesRequest.prototype.clearCaseUuidsList = function() {
-  return this.setCaseUuidsList([]);
+proto.covid19api.DelCasesRequest.prototype.clearCaseIdsList = function() {
+  return this.setCaseIdsList([]);
 };
 
 

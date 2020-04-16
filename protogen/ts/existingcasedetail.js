@@ -9,14 +9,11 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 goog.provide('proto.covid19api.ExistingCaseDetail');
-goog.provide('proto.covid19api.ExistingCaseDetail.LocationCase');
 
 goog.require('jspb.BinaryReader');
 goog.require('jspb.BinaryWriter');
 goog.require('jspb.Message');
-goog.require('proto.covid19api.GPSLocation');
-goog.require('proto.covid19api.NamedLocation');
-goog.require('proto.google.protobuf.Timestamp');
+goog.require('proto.covid19api.Location');
 
 goog.forwardDeclare('proto.covid19api.CaseState');
 goog.forwardDeclare('proto.covid19api.InfectionSource');
@@ -31,7 +28,7 @@ goog.forwardDeclare('proto.covid19api.InfectionSource');
  * @constructor
  */
 proto.covid19api.ExistingCaseDetail = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.covid19api.ExistingCaseDetail.oneofGroups_);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.covid19api.ExistingCaseDetail, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -41,32 +38,6 @@ if (goog.DEBUG && !COMPILED) {
    */
   proto.covid19api.ExistingCaseDetail.displayName = 'proto.covid19api.ExistingCaseDetail';
 }
-
-/**
- * Oneof group definitions for this message. Each group defines the field
- * numbers belonging to that group. When of these fields' value is set, all
- * other fields in the group are cleared. During deserialization, if multiple
- * fields are encountered for a group, only the last value seen will be kept.
- * @private {!Array<!Array<number>>}
- * @const
- */
-proto.covid19api.ExistingCaseDetail.oneofGroups_ = [[21,22]];
-
-/**
- * @enum {number}
- */
-proto.covid19api.ExistingCaseDetail.LocationCase = {
-  LOCATION_NOT_SET: 0,
-  NAMED_LOCATION: 21,
-  GPS_LOCATION: 22
-};
-
-/**
- * @return {proto.covid19api.ExistingCaseDetail.LocationCase}
- */
-proto.covid19api.ExistingCaseDetail.prototype.getLocationCase = function() {
-  return /** @type {proto.covid19api.ExistingCaseDetail.LocationCase} */(jspb.Message.computeOneofCase(this, proto.covid19api.ExistingCaseDetail.oneofGroups_[0]));
-};
 
 
 
@@ -99,13 +70,12 @@ proto.covid19api.ExistingCaseDetail.prototype.toObject = function(opt_includeIns
  */
 proto.covid19api.ExistingCaseDetail.toObject = function(includeInstance, msg) {
   var f, obj = {
-    caseUuid: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    caseId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     patientId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    reportedTime: (f = msg.getReportedTime()) && proto.google.protobuf.Timestamp.toObject(includeInstance, f),
+    reportedTime: jspb.Message.getFieldWithDefault(msg, 3, 0),
     state: jspb.Message.getFieldWithDefault(msg, 11, 0),
     infectSrc: jspb.Message.getFieldWithDefault(msg, 12, 0),
-    namedLocation: (f = msg.getNamedLocation()) && proto.covid19api.NamedLocation.toObject(includeInstance, f),
-    gpsLocation: (f = msg.getGpsLocation()) && proto.covid19api.GPSLocation.toObject(includeInstance, f)
+    location: (f = msg.getLocation()) && proto.covid19api.Location.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -144,15 +114,14 @@ proto.covid19api.ExistingCaseDetail.deserializeBinaryFromReader = function(msg, 
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setCaseUuid(value);
+      msg.setCaseId(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setPatientId(value);
       break;
     case 3:
-      var value = new proto.google.protobuf.Timestamp;
-      reader.readMessage(value,proto.google.protobuf.Timestamp.deserializeBinaryFromReader);
+      var value = /** @type {number} */ (reader.readInt64());
       msg.setReportedTime(value);
       break;
     case 11:
@@ -164,14 +133,9 @@ proto.covid19api.ExistingCaseDetail.deserializeBinaryFromReader = function(msg, 
       msg.setInfectSrc(value);
       break;
     case 21:
-      var value = new proto.covid19api.NamedLocation;
-      reader.readMessage(value,proto.covid19api.NamedLocation.deserializeBinaryFromReader);
-      msg.setNamedLocation(value);
-      break;
-    case 22:
-      var value = new proto.covid19api.GPSLocation;
-      reader.readMessage(value,proto.covid19api.GPSLocation.deserializeBinaryFromReader);
-      msg.setGpsLocation(value);
+      var value = new proto.covid19api.Location;
+      reader.readMessage(value,proto.covid19api.Location.deserializeBinaryFromReader);
+      msg.setLocation(value);
       break;
     default:
       reader.skipField();
@@ -202,7 +166,7 @@ proto.covid19api.ExistingCaseDetail.prototype.serializeBinary = function() {
  */
 proto.covid19api.ExistingCaseDetail.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getCaseUuid();
+  f = message.getCaseId();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -217,11 +181,10 @@ proto.covid19api.ExistingCaseDetail.serializeBinaryToWriter = function(message, 
     );
   }
   f = message.getReportedTime();
-  if (f != null) {
-    writer.writeMessage(
+  if (f !== 0) {
+    writer.writeInt64(
       3,
-      f,
-      proto.google.protobuf.Timestamp.serializeBinaryToWriter
+      f
     );
   }
   f = message.getState();
@@ -238,30 +201,22 @@ proto.covid19api.ExistingCaseDetail.serializeBinaryToWriter = function(message, 
       f
     );
   }
-  f = message.getNamedLocation();
+  f = message.getLocation();
   if (f != null) {
     writer.writeMessage(
       21,
       f,
-      proto.covid19api.NamedLocation.serializeBinaryToWriter
-    );
-  }
-  f = message.getGpsLocation();
-  if (f != null) {
-    writer.writeMessage(
-      22,
-      f,
-      proto.covid19api.GPSLocation.serializeBinaryToWriter
+      proto.covid19api.Location.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional string case_uuid = 1;
+ * optional string case_id = 1;
  * @return {string}
  */
-proto.covid19api.ExistingCaseDetail.prototype.getCaseUuid = function() {
+proto.covid19api.ExistingCaseDetail.prototype.getCaseId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -270,7 +225,7 @@ proto.covid19api.ExistingCaseDetail.prototype.getCaseUuid = function() {
  * @param {string} value
  * @return {!proto.covid19api.ExistingCaseDetail} returns this
  */
-proto.covid19api.ExistingCaseDetail.prototype.setCaseUuid = function(value) {
+proto.covid19api.ExistingCaseDetail.prototype.setCaseId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -294,39 +249,20 @@ proto.covid19api.ExistingCaseDetail.prototype.setPatientId = function(value) {
 
 
 /**
- * optional google.protobuf.Timestamp reported_time = 3;
- * @return {?proto.google.protobuf.Timestamp}
+ * optional int64 reported_time = 3;
+ * @return {number}
  */
 proto.covid19api.ExistingCaseDetail.prototype.getReportedTime = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, proto.google.protobuf.Timestamp, 3));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
 
 /**
- * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @param {number} value
  * @return {!proto.covid19api.ExistingCaseDetail} returns this
-*/
+ */
 proto.covid19api.ExistingCaseDetail.prototype.setReportedTime = function(value) {
-  return jspb.Message.setWrapperField(this, 3, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.covid19api.ExistingCaseDetail} returns this
- */
-proto.covid19api.ExistingCaseDetail.prototype.clearReportedTime = function() {
-  return this.setReportedTime(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.covid19api.ExistingCaseDetail.prototype.hasReportedTime = function() {
-  return jspb.Message.getField(this, 3) != null;
+  return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
@@ -367,21 +303,21 @@ proto.covid19api.ExistingCaseDetail.prototype.setInfectSrc = function(value) {
 
 
 /**
- * optional NamedLocation named_location = 21;
- * @return {?proto.covid19api.NamedLocation}
+ * optional Location location = 21;
+ * @return {?proto.covid19api.Location}
  */
-proto.covid19api.ExistingCaseDetail.prototype.getNamedLocation = function() {
-  return /** @type{?proto.covid19api.NamedLocation} */ (
-    jspb.Message.getWrapperField(this, proto.covid19api.NamedLocation, 21));
+proto.covid19api.ExistingCaseDetail.prototype.getLocation = function() {
+  return /** @type{?proto.covid19api.Location} */ (
+    jspb.Message.getWrapperField(this, proto.covid19api.Location, 21));
 };
 
 
 /**
- * @param {?proto.covid19api.NamedLocation|undefined} value
+ * @param {?proto.covid19api.Location|undefined} value
  * @return {!proto.covid19api.ExistingCaseDetail} returns this
 */
-proto.covid19api.ExistingCaseDetail.prototype.setNamedLocation = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 21, proto.covid19api.ExistingCaseDetail.oneofGroups_[0], value);
+proto.covid19api.ExistingCaseDetail.prototype.setLocation = function(value) {
+  return jspb.Message.setWrapperField(this, 21, value);
 };
 
 
@@ -389,8 +325,8 @@ proto.covid19api.ExistingCaseDetail.prototype.setNamedLocation = function(value)
  * Clears the message field making it undefined.
  * @return {!proto.covid19api.ExistingCaseDetail} returns this
  */
-proto.covid19api.ExistingCaseDetail.prototype.clearNamedLocation = function() {
-  return this.setNamedLocation(undefined);
+proto.covid19api.ExistingCaseDetail.prototype.clearLocation = function() {
+  return this.setLocation(undefined);
 };
 
 
@@ -398,45 +334,8 @@ proto.covid19api.ExistingCaseDetail.prototype.clearNamedLocation = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.covid19api.ExistingCaseDetail.prototype.hasNamedLocation = function() {
+proto.covid19api.ExistingCaseDetail.prototype.hasLocation = function() {
   return jspb.Message.getField(this, 21) != null;
-};
-
-
-/**
- * optional GPSLocation gps_location = 22;
- * @return {?proto.covid19api.GPSLocation}
- */
-proto.covid19api.ExistingCaseDetail.prototype.getGpsLocation = function() {
-  return /** @type{?proto.covid19api.GPSLocation} */ (
-    jspb.Message.getWrapperField(this, proto.covid19api.GPSLocation, 22));
-};
-
-
-/**
- * @param {?proto.covid19api.GPSLocation|undefined} value
- * @return {!proto.covid19api.ExistingCaseDetail} returns this
-*/
-proto.covid19api.ExistingCaseDetail.prototype.setGpsLocation = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 22, proto.covid19api.ExistingCaseDetail.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.covid19api.ExistingCaseDetail} returns this
- */
-proto.covid19api.ExistingCaseDetail.prototype.clearGpsLocation = function() {
-  return this.setGpsLocation(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.covid19api.ExistingCaseDetail.prototype.hasGpsLocation = function() {
-  return jspb.Message.getField(this, 22) != null;
 };
 
 

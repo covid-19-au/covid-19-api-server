@@ -2,11 +2,10 @@ syntax = "proto3";
 
 package covid19api;
 
+option go_package = ".;covid19api";
 option java_multiple_files = true;
 option java_outer_classname = "FlightInterfaceProto";
 option java_package = "org.covid19.api";
-
-import "google/protobuf/timestamp.proto";
 
 import "common.proto";
 
@@ -14,8 +13,8 @@ message FlightDetail {
     string flight_num = 1; // Flight number
     string iata_code = 2; // IATA code of airline
     string icao_code = 3; // ICAO code of airline
-    google.protobuf.Timestamp dep_date = 4; // Departure date
-    google.protobuf.Timestamp arr_date = 5; // Arrival date
+    int64 dep_date = 4; // Departure date
+    int64 arr_date = 5; // Arrival date
 
     string dep_airport = 11; // Departure airport code
     string arr_airport = 12; // Arrival airport code

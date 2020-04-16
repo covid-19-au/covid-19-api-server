@@ -77,6 +77,28 @@ export class PublicQueryClient {
       callback);
   }
 
+  methodInfoGetCaseStats = new grpcWeb.AbstractClientBase.MethodInfo(
+    case_def_pb.GetCaseStatsResponse,
+    (request: case_def_pb.GetCaseStatsRequest) => {
+      return request.serializeBinary();
+    },
+    case_def_pb.GetCaseStatsResponse.deserializeBinary
+  );
+
+  getCaseStats(
+    request: case_def_pb.GetCaseStatsRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: case_def_pb.GetCaseStatsResponse) => void) {
+    return this.client_.rpcCall(
+      this.hostname_ +
+        '/covid19api.PublicQuery/GetCaseStats',
+      request,
+      metadata || {},
+      this.methodInfoGetCaseStats,
+      callback);
+  }
+
   methodInfoGetFlights = new grpcWeb.AbstractClientBase.MethodInfo(
     flight_def_pb.GetFlightsResponse,
     (request: flight_def_pb.GetFlightsRequest) => {

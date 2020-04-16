@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package covid19api;
 
+option go_package = ".;covid19api";
 option java_multiple_files = true;
 option java_outer_classname = "PublicQueryProto";
 option java_package = "org.covid19.api";
@@ -24,6 +25,12 @@ service PublicQuery {
     rpc GetCases (GetCasesRequest) returns (GetCasesResponse) { // Get cases
 //        option (google.api.http) = {
 //            get: "/v1/public/cases"
+//        };
+    }
+
+    rpc GetCaseStats (GetCaseStatsRequest) returns (GetCaseStatsResponse) { // Get case states
+//        option (google.api.http) = {
+//            get: "/v1/public/case/stats"
 //        };
     }
 

@@ -24,6 +24,13 @@ export class PublicQueryClient {
                response: case_def_pb.GetCasesResponse) => void
   ): grpcWeb.ClientReadableStream<case_def_pb.GetCasesResponse>;
 
+  getCaseStats(
+    request: case_def_pb.GetCaseStatsRequest,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.Error,
+               response: case_def_pb.GetCaseStatsResponse) => void
+  ): grpcWeb.ClientReadableStream<case_def_pb.GetCaseStatsResponse>;
+
   getFlights(
     request: flight_def_pb.GetFlightsRequest,
     metadata: grpcWeb.Metadata | undefined,
@@ -47,6 +54,11 @@ export class PublicQueryPromiseClient {
     request: case_def_pb.GetCasesRequest,
     metadata?: grpcWeb.Metadata
   ): Promise<case_def_pb.GetCasesResponse>;
+
+  getCaseStats(
+    request: case_def_pb.GetCaseStatsRequest,
+    metadata?: grpcWeb.Metadata
+  ): Promise<case_def_pb.GetCaseStatsResponse>;
 
   getFlights(
     request: flight_def_pb.GetFlightsRequest,
