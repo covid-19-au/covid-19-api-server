@@ -291,6 +291,8 @@ export enum CaseState {
   CONFIRMED = 21,
   RECOVERED = 22,
   DEATH = 23,
+  IN_HOSPITAL = 24,
+  IN_ICU = 25,
 }
 export enum InfectionSource { 
   _UNASSIGNED_INF_SRC = 0,

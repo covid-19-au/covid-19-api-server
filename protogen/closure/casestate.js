@@ -19,6 +19,8 @@ proto.covid19api.CaseState = {
   UNDISCLOSED: 12,
   CONFIRMED: 21,
   RECOVERED: 22,
-  DEATH: 23
+  DEATH: 23,
+  IN_HOSPITAL: 24,
+  IN_ICU: 25
 };
 

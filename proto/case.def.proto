@@ -22,6 +22,8 @@ enum CaseState {
     CONFIRMED = 21;
     RECOVERED = 22;
     DEATH = 23;
+    IN_HOSPITAL = 24;
+    IN_ICU = 25;
 }
 
 // InfectionSource describes source of the infection
